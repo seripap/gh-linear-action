@@ -16,3 +16,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'dist/ndex.js'
+branding:
+  icon: 'arrow-up-circle'
+  color: 'purple'
