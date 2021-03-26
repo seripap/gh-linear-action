@@ -30,5 +30,6 @@ function checkStatus(res) {
         })
         .then(checkStatus)
         .then(json => console.log(json))
+        .catch(e => console.log(e))
     return
 })();

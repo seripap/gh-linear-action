@@ -2060,8 +2060,15 @@ const fetch = __nccwpck_require__(467);
 
 const newLinearIssueMutation = __nccwpck_require__(937);
 
+function checkStatus(res) {
+  if (res.ok) { // res.status >= 200 && res.status < 300
+        return res.json();
+    } else {
+        throw core.setFailed(res.statusText);
+    }
+}
+
 (async () => {
-  try {
     const linearKey = core.getInput('linear-key');
     const linearTeam = core.getInput('linear-team-id');
     const title = core.getInput('title');
@@ -2078,12 +2085,10 @@ const newLinearIssueMutation = __nccwpck_require__(937);
               'Authorization': linearKey,
             },
         })
-        .then(res => res.json())
-        .then(json => console.log(json));
+        .then(checkStatus)
+        .then(json => console.log(json))
+        .catch(e => console.log(e))
     return
-  } catch (error) {
-    core.setFailed(error.message);
-  }
 })();
 
 /***/ }),
