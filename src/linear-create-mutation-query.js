@@ -1,10 +1,10 @@
 
-const newLinearIssueMutation = (title, body, teamId) => (
+const newLinearIssueMutation = (title, body, teamId, issueUrl) => (
   `mutation {
   issueCreate(
     input: {
       title: "${title}"
-      description: "${body}"
+      description: "${body}\n\n[View original issue in GitHub](${issueUrl})"
       teamId: "${teamId}"
     }
   ) {

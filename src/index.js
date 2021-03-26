@@ -9,12 +9,13 @@ const newLinearIssueMutation = require('./linear-create-mutation-query');
     const linearTeam = core.getInput('linear-team-id');
     const title = core.getInput('title');
     const body = core.getInput('body');
+    const url = core.getInput('url');
 
-    const mutation = newLinearIssueMutation(title, body, linearTeam)
+    const mutation = newLinearIssueMutation(title, body, linearTeam, url)
 
     const options = {
-      hostname: 'https://api.linear.app',
-      port: 443,
+      hostname: 'api.linear.app',
+      port: '443',
       path: '/graphql',
       method: 'POST',
       headers: {

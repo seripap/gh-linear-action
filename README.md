@@ -2,6 +2,8 @@
 
 Creates a linear issue through GitHub actions.
 
+This isn't 100% fully baked, so please use at your own risk.
+
 # Usage
 
 ### .github/workflows/labeled-issue.yml
@@ -27,4 +29,5 @@ jobs:
           linear-team-id: your-linear-team-id
           title: ${{ github.event.issue.title }}
           body: ${{ github.event.issue.body }}
+          url: ${{ github.event.issue.issue_url }}
 ```

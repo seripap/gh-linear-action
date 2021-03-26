@@ -13,6 +13,9 @@ inputs:
   body:
     description: 'The body of the issue, can be used as {{ github.event.issue.body }}'
     required: true
+  url:
+    description: 'The issue url, can be used as {{ github.event.issue.url` }}'
+    required: true
 runs:
   using: 'node12'
   main: 'dist/index.js'
