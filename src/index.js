@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const https = require('https');
+const fetch = require('node-fetch');
 
 const newLinearIssueMutation = require('./linear-create-mutation-query');
 
@@ -13,33 +13,16 @@ const newLinearIssueMutation = require('./linear-create-mutation-query');
 
     const mutation = newLinearIssueMutation(title, body, linearTeam, url)
 
-    const options = {
-      hostname: 'api.linear.app',
-      port: '443',
-      path: '/graphql',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': linearKey,
-        'Content-Length': mutation.length
-      }
-    }
-
-    const req = https.request(options, res => {
-      console.log(`statusCode: ${res.statusCode}`)
-
-      res.on('data', d => {
-        console.log(JSON.stringify(d))
-      })
-    })
-
-    req.on('error', error => {
-      console.log(error)
-      core.setFailed(error)
-    })
-
-    req.write(mutation)
-    req.end()
+    fetch('https://api.linear.app/graphql', {
+            method: 'post',
+            body:    JSON.stringify(body),
+            headers: { 
+              'Content-Type': 'application/json' ,
+              'Authorization': linearKey,
+            },
+        })
+        .then(res => res.json())
+        .then(json => console.log(json));
     return
   } catch (error) {
     core.setFailed(error.message);
