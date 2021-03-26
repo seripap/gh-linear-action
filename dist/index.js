@@ -419,8 +419,8 @@ const newLinearIssueMutation = __nccwpck_require__(937);
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${linearKey}`,
-        'Content-Length': data.length
+        'Authorization': linearKey,
+        'Content-Length': mutation.length
       }
     }
 
