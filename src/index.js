@@ -15,7 +15,7 @@ const newLinearIssueMutation = require('./linear-create-mutation-query');
 
     fetch('https://api.linear.app/graphql', {
             method: 'post',
-            body:    JSON.stringify(body),
+            body:    JSON.stringify(mutation),
             headers: { 
               'Content-Type': 'application/json' ,
               'Authorization': linearKey,
