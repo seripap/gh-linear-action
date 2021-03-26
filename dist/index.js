@@ -409,12 +409,13 @@ const newLinearIssueMutation = __nccwpck_require__(937);
     const linearTeam = core.getInput('linear-team-id');
     const title = core.getInput('title');
     const body = core.getInput('body');
+    const url = core.getInput('url');
 
-    const mutation = newLinearIssueMutation(title, body, linearTeam)
+    const mutation = newLinearIssueMutation(title, body, linearTeam, url)
 
     const options = {
-      hostname: 'https://api.linear.app',
-      port: 443,
+      hostname: 'api.linear.app',
+      port: '443',
       path: '/graphql',
       method: 'POST',
       headers: {
@@ -451,12 +452,12 @@ const newLinearIssueMutation = __nccwpck_require__(937);
 /***/ ((module) => {
 
 
-const newLinearIssueMutation = (title, body, teamId) => (
+const newLinearIssueMutation = (title, body, teamId, issueUrl) => (
   `mutation {
   issueCreate(
     input: {
       title: "${title}"
-      description: "${body}"
+      description: "${body}\n\n[View original issue in GitHub](${issueUrl})"
       teamId: "${teamId}"
     }
   ) {
