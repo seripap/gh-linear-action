@@ -1,35 +1,19 @@
 const core = require('@actions/core');
-const fetch = require('node-fetch');
-
-const newLinearIssueMutation = require('./linear-create-mutation-query');
-
-function checkStatus(res) {
-  if (res.ok) { // res.status >= 200 && res.status < 300
-        return res.json();
-    } else {
-        throw core.setFailed(res.statusText);
-    }
-}
+const linear = require('@linear/sdk');
 
 (async () => {
-    const linearKey = core.getInput('linear-key');
-    const linearTeam = core.getInput('linear-team-id');
+    const apiKey = core.getInput('linear-key');
+    const teamId = core.getInput('linear-team-id');
     const title = core.getInput('title');
-    const body = core.getInput('body');
     const url = core.getInput('url');
+    const description = core.getInput('body') + `\n\n[View original issue in GitHub](${url})`;
 
-    const mutation = newLinearIssueMutation(title, body, linearTeam, url)
+    const linearClient = new linear.LinearClient({ apiKey });
+    await linearClient.issueCreate({ 
+      teamId, 
+      title,
+      description,
+    });
 
-    fetch('https://api.linear.app/graphql', {
-            method: 'post',
-            body:    JSON.stringify(mutation),
-            headers: { 
-              'Content-Type': 'application/json' ,
-              'Authorization': linearKey,
-            },
-        })
-        .then(checkStatus)
-        .then(json => console.log(json))
-        .catch(e => console.log(e))
     return
 })();

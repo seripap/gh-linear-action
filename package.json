@@ -11,8 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0",
-    "node-fetch": "^2.6.1"
+    "@linear/sdk": "^1.10.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.27.0"
