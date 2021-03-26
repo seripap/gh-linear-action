@@ -3,8 +3,15 @@ const fetch = require('node-fetch');
 
 const newLinearIssueMutation = require('./linear-create-mutation-query');
 
+function checkStatus(res) {
+  if (res.ok) { // res.status >= 200 && res.status < 300
+        return res.json();
+    } else {
+        throw core.setFailed(res.statusText);
+    }
+}
+
 (async () => {
-  try {
     const linearKey = core.getInput('linear-key');
     const linearTeam = core.getInput('linear-team-id');
     const title = core.getInput('title');
@@ -21,10 +28,7 @@ const newLinearIssueMutation = require('./linear-create-mutation-query');
               'Authorization': linearKey,
             },
         })
-        .then(res => res.json())
-        .then(json => console.log(json));
+        .then(checkStatus)
+        .then(json => console.log(json))
     return
-  } catch (error) {
-    core.setFailed(error.message);
-  }
 })();
