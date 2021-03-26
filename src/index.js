@@ -29,7 +29,7 @@ const newLinearIssueMutation = require('./linear-create-mutation-query');
       console.log(`statusCode: ${res.statusCode}`)
 
       res.on('data', d => {
-        console.log(d)
+        console.log(JSON.stringify(d))
       })
     })
 

@@ -429,7 +429,7 @@ const newLinearIssueMutation = __nccwpck_require__(937);
       console.log(`statusCode: ${res.statusCode}`)
 
       res.on('data', d => {
-        console.log(d)
+        console.log(JSON.stringify(d))
       })
     })
 
