@@ -19,7 +19,7 @@ const newLinearIssueMutation = require('./linear-create-mutation-query');
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${linearKey}`,
+        'Authorization': linearKey,
         'Content-Length': data.length
       }
     }
