@@ -2072,7 +2072,7 @@ const newLinearIssueMutation = __nccwpck_require__(937);
 
     fetch('https://api.linear.app/graphql', {
             method: 'post',
-            body:    JSON.stringify(body),
+            body:    JSON.stringify(mutation),
             headers: { 
               'Content-Type': 'application/json' ,
               'Authorization': linearKey,
