@@ -15,7 +15,7 @@ inputs:
     required: true
 runs:
   using: 'node12'
-  main: 'dist/ndex.js'
+  main: 'dist/index.js'
 branding:
   icon: 'arrow-up-circle'
   color: 'purple'
