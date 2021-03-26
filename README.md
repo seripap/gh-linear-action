@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: 'Check if labeled triaged'
         if: contains(github.event.label.name, 'triaged' )
-        uses: seripap/gh-linear-action@v1.0.0
+        uses: seripap/gh-linear-action@v1.0.3
         with:
           linear-key: your-linear-api-key
           linear-team-id: your-linear-team-id
