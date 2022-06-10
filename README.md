@@ -29,5 +29,5 @@ jobs:
           linear-team-id: your-linear-team-id
           title: ${{ github.event.issue.title }}
           body: ${{ github.event.issue.body }}
-          url: ${{ github.event.issue.issue_url }}
+          url: ${{ github.event.issue.html_url }}
 ```
